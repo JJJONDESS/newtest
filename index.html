@@ -484,11 +484,8 @@
   //
   // Layers (bottom to top - do NOT put two of them on the
   // same level, or they blink / flicker as the camera moves):
-  //   shadow under the stand ......... z = -0.46
-  //   glass stand .................... z = -0.40
-  //   lower plate .................... z = -0.34
-  //   crystal plate .................. z = -0.28
-  //   clear rim ...................... z = -0.27
+  //   crystal plate (picture) ........ z = -0.28
+  //   shadow under the pizza ......... z = -0.23
   //   shadow ......................... z = -0.23
   //   pizza .......................... z = 0
   //
@@ -545,88 +542,22 @@
 
           </a-entity>
 
-          <!-- ===== CRYSTAL PLATE - clear only, no colour, no brand ===== -->
-          <!-- Why v25 looked invisible: the plate was too big,
-               too faint (opacity 0.10) and completely flat, so
-               on a busy background it disappeared and the pizza
-               looked like it was floating on air. In your picture
-               the glass is visible because it has 3 things:
-               1) a size close to the food, 2) a real thickness
-               (you see the edge of the glass), 3) a stand
-               underneath it. This version adds all 3 - still
-               clear glass only, no colour, no brand. -->
-
-          <!-- Main plate: clear glass, a little stronger now
-               (0.20) so you can actually see it, and smaller
-               (radius 0.58) so it is only just bigger than the
-               pizza, like the plates in your picture. -->
-          <a-ring
-            radius-inner="0"
-            radius-outer="0.58"
-            position="0 0 -0.28"
-            material="color: #ffffff; transparent: true; opacity: 0.20; side: double; depthWrite: false">
-          </a-ring>
-
-          <!-- Thick clear rim around the plate, so you can see
-               where the glass ends. -->
-          <a-ring
-            radius-inner="0.54"
-            radius-outer="0.58"
-            position="0 0 -0.27"
-            material="color: #ffffff; transparent: true; opacity: 0.85; side: double; depthWrite: false">
-          </a-ring>
-
-          <!-- Thin highlight ring inside the plate, like the
-               shine you see on real glass. -->
-          <a-ring
-            radius-inner="0.48"
-            radius-outer="0.50"
-            position="0 0 -0.27"
-            material="color: #ffffff; transparent: true; opacity: 0.30; side: double; depthWrite: false">
-          </a-ring>
-
-          <!-- Glass thickness: the side wall of the plate only.
-               Open-ended, so there is NO top or bottom to it -
-               it cannot become a solid disc like the cylinder
-               in v24 did. You only see the edge of the glass. -->
-          <a-cylinder
-            radius="0.58"
-            height="0.05"
-            open-ended="true"
-            rotation="90 0 0"
-            position="0 0 -0.30"
-            material="color: #ffffff; transparent: true; opacity: 0.25; side: double; depthWrite: false">
-          </a-cylinder>
-
-          <!-- A second, larger clear plate underneath, layered
-               like the glass stands in the reference picture. -->
-          <a-ring
-            radius-inner="0"
-            radius-outer="0.68"
-            position="0 0 -0.34"
-            material="color: #ffffff; transparent: true; opacity: 0.12; side: double; depthWrite: false">
-          </a-ring>
-
-          <!-- Glass stand under the plate, like in your picture.
-               Open-ended side wall only, no top or bottom. -->
-          <a-cylinder
-            radius="0.40"
-            height="0.12"
-            open-ended="true"
-            rotation="90 0 0"
-            position="0 0 -0.40"
-            material="color: #ffffff; transparent: true; opacity: 0.12; side: double; depthWrite: false">
-          </a-cylinder>
-
-          <!-- Soft shadow under the whole stand, so the plate
-               sits on the table instead of floating in air. -->
+          <!-- ===== CRYSTAL PLATE - a picture of glass, not 3D glass ===== -->
+          <!-- Real glass cannot be made with plain transparent
+               3D shapes in AR: the phone does not bend light,
+               so a transparent ring or cylinder just looks
+               faint, flat, or like a white square. Your
+               reference picture is itself a rendered image of
+               glass - so the plate here is also a picture:
+               dishes/plate.png, drawn with a thick rim,
+               highlights and shine, on one flat plane. That
+               is why it looks like glass in the photo. -->
           <a-plane
-            src="dishes/shadow.png"
-            position="0 0 -0.46"
-            width="1.00"
-            height="1.00"
-            transparent="true"
-            material="transparent: true; opacity: 0.30; depthWrite: false">
+            src="dishes/plate.png"
+            position="0 0 -0.28"
+            width="1.35"
+            height="1.35"
+            material="transparent: true; depthWrite: false">
           </a-plane>
 
           <!-- Soft shadow under the pizza, on the box floor -->
