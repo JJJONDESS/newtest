@@ -484,8 +484,11 @@
   //
   // Layers (bottom to top - do NOT put two of them on the
   // same level, or they blink / flicker as the camera moves):
-  //   crystal plate (picture) ........ z = -0.28
-  //   shadow under the pizza ......... z = -0.23
+  //   crystal plate (picture) ........ z = -0.12
+  //   shadow under the pizza ......... z = -0.10
+  //   pizza (centre) ................. z = -0.02
+  //   -> pizza bottom is ~-0.08, plate is at -0.12:
+  //      the pizza SITS on the plate, it does not float.
   //   shadow ......................... z = -0.23
   //   pizza .......................... z = 0
   //
@@ -496,7 +499,7 @@
   // ============================================================
   function buildScene() {
     const rot = DISH.rotation || '90 0 0';
-    const pos = DISH.position || '0 0 0.02';
+    const pos = DISH.position || '0 0 -0.02';   // pizza sits ON the plate, not floating above it
     const sc  = DISH.scale    || '2 2 2';
 
     document.body.insertAdjacentHTML('beforeend', `
@@ -554,16 +557,16 @@
                is why it looks like glass in the photo. -->
           <a-plane
             src="dishes/plate.png"
-            position="0 0 -0.28"
-            width="1.35"
-            height="1.35"
+            position="0 0 -0.12"
+            width="1.10"
+            height="1.10"
             material="transparent: true; depthWrite: false">
           </a-plane>
 
           <!-- Soft shadow under the pizza, on the box floor -->
           <a-plane
             src="dishes/shadow.png"
-            position="0 0 -0.23"
+            position="0 0 -0.10"
             width="0.95"
             height="0.95"
             transparent="true"
