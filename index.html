@@ -489,9 +489,9 @@
   //   shadow ............ z = -0.28 (on the base, under the pizza)
   //   glow ring ......... z = -0.29 (around the dome base)
   //   logo plate ........ z = -0.29 (in FRONT of the base)
-  //   pizza (centre) .... z = -0.15 (bottom ~-0.25, on the base)
-  //   dome .............. centre z = -0.30, radius 0.70,
-  //                       top at z = +0.40
+  //   pizza (centre) .... z = -0.08 (a little higher in the dome)
+  //   dome .............. centre z = -0.30, radius 0.82,
+  //                       top at z = +0.52
   //
   // Groups: #pop (pop-up) > #zoom (pinch zoom + float)
   //         > #tilt (drag tilt) > #spin (drag rotate + auto-spin)
@@ -500,7 +500,7 @@
   // ============================================================
   function buildScene() {
     const rot = DISH.rotation || '90 0 0';
-    const pos = DISH.position || '0 0 -0.15';   // pizza sits on the metal base, not floating in the middle
+    const pos = DISH.position || '0 0 -0.08';   // pizza a little higher in the dome (was -0.15, too low)
     const sc  = DISH.scale    || '2 2 2';
 
     document.body.insertAdjacentHTML('beforeend', `
@@ -553,7 +553,7 @@
                pole points up (towards the camera). Keep the
                opacity low (0.08) so the pizza stays clear. -->
           <a-sphere
-            radius="0.70"
+            radius="0.82"
             theta-length="90"
             rotation="90 0 0"
             position="0 0 -0.30"
@@ -562,7 +562,7 @@
 
           <!-- Silver metal ring where the dome meets the base. -->
           <a-cylinder
-            radius="0.71"
+            radius="0.83"
             height="0.06"
             open-ended="true"
             rotation="90 0 0"
@@ -575,24 +575,16 @@
                in brand colour - change #FFC20F to #00e5ff
                in this file if you want it blue like the picture. -->
           <a-ring
-            radius-inner="0.68"
-            radius-outer="0.72"
+            radius-inner="0.80"
+            radius-outer="0.84"
             position="0 0 -0.29"
             material="color: #FFC20F; transparent: true; opacity: 0.9; side: double; depthWrite: false">
-          </a-ring>
-
-          <!-- Small glow ring inside the top of the dome. -->
-          <a-ring
-            radius-inner="0.26"
-            radius-outer="0.32"
-            position="0 0 0.25"
-            material="color: #FFC20F; transparent: true; opacity: 0.55; side: double; depthWrite: false">
           </a-ring>
 
           <!-- Solid metal base under the dome, like the machine
                base in your picture. Dark grey, almost black. -->
           <a-cylinder
-            radius="0.75"
+            radius="0.88"
             height="0.12"
             rotation="90 0 0"
             position="0 0 -0.36"
