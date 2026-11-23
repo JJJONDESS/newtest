@@ -489,7 +489,8 @@
   //   shadow ............ z = -0.28 (on the base, under the pizza)
   //   glow ring ......... z = -0.29 (around the dome base)
   //   logo plate ........ z = -0.29 (in FRONT of the base)
-  //   pizza (centre) .... z = -0.08 (a little higher in the dome)
+  //   pizza (centre) .... X=0, Y=+0.18 (up on screen), Z=-0.08
+  //   logo plate ........ Y=-0.70 (below the pizza, on the base)
   //   dome .............. centre z = -0.30, radius 0.82,
   //                       top at z = +0.52
   //
@@ -500,7 +501,7 @@
   // ============================================================
   function buildScene() {
     const rot = DISH.rotation || '90 0 0';
-    const pos = DISH.position || '0 0 -0.08';   // pizza a little higher in the dome (was -0.15, too low)
+    const pos = DISH.position || '0 0.18 -0.08';   // pizza UP on screen: 2nd number is up/down (Y), 3rd is depth (Z)
     const sc  = DISH.scale    || '2 2 2';
 
     document.body.insertAdjacentHTML('beforeend', `
@@ -592,9 +593,13 @@
           </a-cylinder>
 
           <!-- Black MELT9 logo plate on the front of the base. -->
+          <!-- Logo plate: BELOW the pizza, on the front of the base.
+               It was at 0 0 -0.29, dead centre, directly behind the
+               pizza - so the pizza covered it completely. Now at
+               Y=-0.70, under the pizza, where you can actually see it. -->
           <a-plane
             src="dishes/base-logo.png"
-            position="0 0 -0.29"
+            position="0 -0.70 -0.29"
             width="0.70"
             height="0.18"
             material="transparent: true; depthWrite: false">
@@ -603,7 +608,7 @@
           <!-- Soft shadow under the pizza, on the metal base -->
           <a-plane
             src="dishes/shadow.png"
-            position="0 0 -0.28"
+            position="0 0.18 -0.28"
             width="0.95"
             height="0.95"
             transparent="true"
